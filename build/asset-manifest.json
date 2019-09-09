@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/github.io/TimeTable/static/css/main.2cce8147.chunk.css",
+    "main.js": "/github.io/TimeTable/static/js/main.7fd323fa.chunk.js",
+    "main.js.map": "/github.io/TimeTable/static/js/main.7fd323fa.chunk.js.map",
+    "runtime~main.js": "/github.io/TimeTable/static/js/runtime~main.92bacf87.js",
+    "runtime~main.js.map": "/github.io/TimeTable/static/js/runtime~main.92bacf87.js.map",
+    "static/js/2.92456c0e.chunk.js": "/github.io/TimeTable/static/js/2.92456c0e.chunk.js",
+    "static/js/2.92456c0e.chunk.js.map": "/github.io/TimeTable/static/js/2.92456c0e.chunk.js.map",
+    "index.html": "/github.io/TimeTable/index.html",
+    "precache-manifest.1aef37903298ead3334e1d69755782d9.js": "/github.io/TimeTable/precache-manifest.1aef37903298ead3334e1d69755782d9.js",
+    "service-worker.js": "/github.io/TimeTable/service-worker.js",
+    "static/css/main.2cce8147.chunk.css.map": "/github.io/TimeTable/static/css/main.2cce8147.chunk.css.map",
+    "static/media/logo.svg": "/github.io/TimeTable/static/media/logo.5d5d9eef.svg"
+  }
+}
