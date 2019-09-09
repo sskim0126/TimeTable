@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "%7BYOUR-GITHUB-ID%7D/github.io/%7BYOUR-REPO-NAME%7D/precache-manifest.7c72afe3d19ca93b93813169aea3ed3a.js"
+  "/github.io/TimeTable/precache-manifest.1aef37903298ead3334e1d69755782d9.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -33,7 +33,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("%7BYOUR-GITHUB-ID%7D/github.io/%7BYOUR-REPO-NAME%7D/index.html"), {
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/github.io/TimeTable/index.html"), {
   
   blacklist: [/^\/_/,/\/[^\/?]+\.[^\/]+$/],
 });
