@@ -1,0 +1,25 @@
+import React from 'react';
+import _ from './_.js';
+import '../css/_.css';
+import {
+	_
+} from 'reactstrap';
+
+class _ extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+		
+		};
+	}
+	
+  render() {
+		return (
+			<div>
+
+			</div>
+		);
+  }
+}
+
+export default _;
