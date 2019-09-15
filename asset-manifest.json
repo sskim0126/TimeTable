@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/TimeTable/static/css/main.e65ef76a.chunk.css",
-    "main.js": "/TimeTable/static/js/main.01bb2fa3.chunk.js",
-    "main.js.map": "/TimeTable/static/js/main.01bb2fa3.chunk.js.map",
+    "main.css": "/TimeTable/static/css/main.6e010865.chunk.css",
+    "main.js": "/TimeTable/static/js/main.472b3552.chunk.js",
+    "main.js.map": "/TimeTable/static/js/main.472b3552.chunk.js.map",
     "runtime~main.js": "/TimeTable/static/js/runtime~main.341ef417.js",
     "runtime~main.js.map": "/TimeTable/static/js/runtime~main.341ef417.js.map",
-    "static/js/2.14c6c356.chunk.js": "/TimeTable/static/js/2.14c6c356.chunk.js",
-    "static/js/2.14c6c356.chunk.js.map": "/TimeTable/static/js/2.14c6c356.chunk.js.map",
+    "static/css/2.bb68b2d9.chunk.css": "/TimeTable/static/css/2.bb68b2d9.chunk.css",
+    "static/js/2.639413d5.chunk.js": "/TimeTable/static/js/2.639413d5.chunk.js",
+    "static/js/2.639413d5.chunk.js.map": "/TimeTable/static/js/2.639413d5.chunk.js.map",
     "index.html": "/TimeTable/index.html",
-    "precache-manifest.1a6a9891ebae06bba65546f345a7608b.js": "/TimeTable/precache-manifest.1a6a9891ebae06bba65546f345a7608b.js",
+    "precache-manifest.78aa638a35e7ac3874b69339c909df2f.js": "/TimeTable/precache-manifest.78aa638a35e7ac3874b69339c909df2f.js",
     "service-worker.js": "/TimeTable/service-worker.js",
-    "static/css/main.e65ef76a.chunk.css.map": "/TimeTable/static/css/main.e65ef76a.chunk.css.map"
+    "static/css/2.bb68b2d9.chunk.css.map": "/TimeTable/static/css/2.bb68b2d9.chunk.css.map",
+    "static/css/main.6e010865.chunk.css.map": "/TimeTable/static/css/main.6e010865.chunk.css.map"
   }
 }
