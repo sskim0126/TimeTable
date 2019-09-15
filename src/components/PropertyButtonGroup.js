@@ -10,13 +10,7 @@ class PropertyButtonGroup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			propertyGroup: [
-				'주',
-				'야',
-				'비',
-				'짱',
-				'휴'
-			]
+			propertyGroup: this.props.propertyGroup
 		};
 		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
 	}

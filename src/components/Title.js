@@ -6,16 +6,19 @@ import {
 } from 'reactstrap';
 
 class Title extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
+	constructor(props) {
+		super(props);
+		this.state = {
+			month: this.props.month,
+			year: this.props.year
+		}
+	}
+	
   render() {
 		return (
 			<div>
         <Navbar color="light" light className='container'>
-					<NavbarBrand href="/">근무표</NavbarBrand>
+					<NavbarBrand href="/">{this.state.year}년 {this.state.month}월 근무표</NavbarBrand>
         </Navbar>
 			</div>
 		);
