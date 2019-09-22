@@ -2,8 +2,6 @@ import React from 'react';
 import PropertyButton from './PropertyButton.js'
 import '../css/PropertyButtonGroup.css';
 import {
-	Row,
-	Container
 } from 'reactstrap';
 
 class PropertyButtonGroup extends React.Component {
@@ -12,30 +10,23 @@ class PropertyButtonGroup extends React.Component {
 		this.state = {
 			propertyGroup: this.props.propertyGroup
 		};
-		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
-	}
-	
-	onClickPropertyButton(id) {
-		console.log(id)
 	}
 	
   render() {
 		return (
-			<Container>
-				<Row className='container'>
-					{
-						this.state.propertyGroup.map((property, id) => (
-							<PropertyButton
-								key={id}
-								property={property}
-								onClick={() => {
-									this.onClickPropertyButton(id);
-								}}
-							/>
-						))
-					}
-				</Row>
-			</Container>
+			<div className='container' noGutters>
+				{
+					this.state.propertyGroup.map(({ property, color }, id) => (
+						<PropertyButton
+							key={id}
+							className='button'
+							property={property}
+							color={color}
+							onClick={() => this.props.onClickPropertyButton(id)}
+						/>
+					))
+				}
+			</div>
 		);
   }
 }

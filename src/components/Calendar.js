@@ -11,10 +11,9 @@ class Calendar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			propertyGroup: this.props.propertyGroup,
 			date: this.props.date,
 			year: this.props.year,
-			month: this.props.month
+			month: this.props.month,
 		};
 	}
 	
@@ -54,7 +53,7 @@ class Calendar extends React.Component {
 			firstDate: firstDate,
 			lastDate: lastDate,
 			firstWeekday: firstWeekday,
-			calendar: calendar
+			calendar: calendar,
 		})
 	}
 	
@@ -62,7 +61,7 @@ class Calendar extends React.Component {
 		return (
 			<div>
 				<Card className='text-center'>
-					<Row>
+					<Row noGutters>
 						<Col style={{color: 'red'}}>SUN</Col>
 						<Col>MON</Col>
 						<Col>TUE</Col>
@@ -76,12 +75,12 @@ class Calendar extends React.Component {
 					{
 						this.state.calendar.map((week, id) => {
 							return (
-								<Row key={id}>
+								<Row key={id} noGutters>
 									{
 										week.map((date, id) => {
 											return (
 												<Col>
-													<MyDate key={id} {...date} />
+													<MyDate key={id} property={this.props.property} color={this.props.color} {...date} />
 												</Col>
 											)
 										})
