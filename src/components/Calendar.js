@@ -8,18 +8,29 @@ import MyDate from './MyDate.js';
 import '../css/Calendar.css'
 
 class Calendar extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor(props){
+		super(props)
 		this.state = {
-			date: this.props.date,
-			year: this.props.year,
+			calendar: null,
 			month: this.props.month,
-		};
+			year: this.props.year
+		}
+		this.makeCalendar = this.makeCalendar.bind(this)
 	}
 	
 	componentWillMount() {
-		let firstDate = new Date(this.state.year, this.state.month - 1, 1);
-		let lastDate = new Date(this.state.year, this.state.month, 0);
+		this.makeCalendar(this.props.year, this.props.month)
+	}
+	
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.month !== this.props.month) {
+			this.makeCalendar(nextProps.year, nextProps.month);
+		}
+	}
+	
+	makeCalendar(year, month) {
+		let firstDate = new Date(year, month - 1, 1);
+		let lastDate = new Date(year, month, 0);
 		let firstWeekday = firstDate.getDay();
 		let calendar = [[]];
 		let row = 0;

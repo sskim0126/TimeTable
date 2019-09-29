@@ -25,19 +25,44 @@ class App extends React.Component {
 			currentProperty: null
 		}
 		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
+		this.onClickDescendingButton = this.onClickDescendingButton.bind(this)
+		this.onClickAscendingButton = this.onClickAscendingButton.bind(this)
 	}
 	
-	onClickPropertyButton(id) {
+	onClickPropertyButton(isActive, id) {
+		if (isActive) {
+			this.setState({
+				currentProperty: id
+			})
+		}
+		else {
+			this.setState({
+				currentProperty: null
+			})
+		}
+	}
+	
+	onClickDescendingButton() {
 		this.setState({
-			currentProperty: id
+			month: this.state.month === 1 ? 12 : this.state.month - 1,
+			year: this.state.month === 1 ? this.state.year - 1 : this.state.year
+		})
+	}
+	
+	onClickAscendingButton() {
+		this.setState({
+			month: this.state.month === 12 ? 1 : this.state.month + 1,
+			year: this.state.month === 12 ? this.state.year + 1 : this.state.year
 		})
 	}
 	
 	render() {
 		return (
 			<div>
-				<Title month={this.state.month} year={this.state.year}/>
-				<PropertyButtonGroup propertyGroup={propertyGroup} onClickPropertyButton={this.onClickPropertyButton} />
+				<Title month={this.state.month} year={this.state.year} 
+					onClickDescendingButton={this.onClickDescendingButton}
+					onClickAscendingButton={this.onClickAscendingButton} />
+				<PropertyButtonGroup currentProperty={this.state.currentProperty} propertyGroup={propertyGroup} onClickPropertyButton={this.onClickPropertyButton} />
 				{
 					this.state.currentProperty !== null 
 						? <Calendar

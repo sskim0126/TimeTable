@@ -9,8 +9,6 @@ class MyDate extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			day: this.props.day,
-			weekday: this.props.weekday,
 			isSat: this.props.weekday === 6,
 			isSun: this.props.weekday === 0,
 			text: null,
@@ -27,20 +25,20 @@ class MyDate extends React.Component {
 	}
 	
   render() {
-		if (this.state.day === null) {
+		if (this.props.day === null) {
 			return (
-				<Card />
+				<Card style={{ border: 0 }}/>
 			)
 		}
 		return (
 			<div>
-				<Card body className="text-center" onClick={this.onClickDate} style={{ borderColor: this.state.color }}>
+				<Card body className="text-center" onClick={this.onClickDate} style={{ borderColor: this.state.color, height: 70, margin: 2 }}>
 					<CardTitle style={{ color: this.state.isSun
 														 ? 'red'
 														 : (this.state.isSat
 														 	? 'blue'
 														 	: 'black')}}>
-						{this.state.day}
+						{this.props.day}
 					</CardTitle>
 						<CardText style={{ color: this.state.color }}>{this.state.text}</CardText>
 				</Card>

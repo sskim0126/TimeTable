@@ -22,7 +22,8 @@ class PropertyButtonGroup extends React.Component {
 							className='button'
 							property={property}
 							color={color}
-							onClick={() => this.props.onClickPropertyButton(id)}
+							onClick={(isActive) => this.props.onClickPropertyButton(isActive, id)}
+							isOtherPropertyActive={this.props.currentProperty !== null && this.props.currentProperty !== id}
 						/>
 					))
 				}
