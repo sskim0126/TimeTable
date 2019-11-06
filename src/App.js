@@ -4,7 +4,7 @@ import Title from './components/Title';
 import PropertyButtonGroup from './components/PropertyButtonGroup';
 import Calendar from './components/Calendar';
 
-const propertyGroup = [
+const initialPropertyGroup = [
 	{ property: '주', color: 'blue'},
 	{ property: '야', color: 'orange'},
 	{ property: '비', color: 'skyblue'},
@@ -22,11 +22,13 @@ class App extends React.Component {
 		this.state = {
 			month: month,
 			year: year,
-			currentProperty: null
+			currentProperty: null,
+			propertyGroup: initialPropertyGroup
 		}
 		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
 		this.onClickDescendingButton = this.onClickDescendingButton.bind(this)
 		this.onClickAscendingButton = this.onClickAscendingButton.bind(this)
+		this.addPropertyButton = this.addPropertyButton.bind(this)
 	}
 	
 	onClickPropertyButton(isActive, id) {
@@ -56,18 +58,29 @@ class App extends React.Component {
 		})
 	}
 	
+	addPropertyButton(property, color) {
+		let newPropertyGroup = this.state.propertyGroup
+		newPropertyGroup.push({
+			property: property,
+			color: color
+		})
+		this.setState({
+			propertyGroup: newPropertyGroup
+		})
+	}
+	
 	render() {
 		return (
 			<div>
 				<Title month={this.state.month} year={this.state.year} 
 					onClickDescendingButton={this.onClickDescendingButton}
 					onClickAscendingButton={this.onClickAscendingButton} />
-				<PropertyButtonGroup currentProperty={this.state.currentProperty} propertyGroup={propertyGroup} onClickPropertyButton={this.onClickPropertyButton} />
+				<PropertyButtonGroup currentProperty={this.state.currentProperty} propertyGroup={this.state.propertyGroup} onClickPropertyButton={this.onClickPropertyButton} addPropertyButton={this.addPropertyButton}/>
 				{
 					this.state.currentProperty !== null 
 						? <Calendar
-								property={propertyGroup[this.state.currentProperty].property}
-								color={propertyGroup[this.state.currentProperty].color}
+								property={this.state.propertyGroup[this.state.currentProperty].property}
+								color={this.state.propertyGroup[this.state.currentProperty].color}
 								year={this.state.year} 
 								month={this.state.month} />
 						: <Calendar 
