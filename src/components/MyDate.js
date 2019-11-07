@@ -11,17 +11,7 @@ class MyDate extends React.Component {
 		this.state = {
 			isSat: this.props.weekday === 6,
 			isSun: this.props.weekday === 0,
-			text: null,
-			color: null,
 		};
-		this.onClickDate = this.onClickDate.bind(this);
-	}
-	
-	onClickDate() {
-		this.setState({
-			text: this.props.property,
-			color: this.props.color
-		})
 	}
 	
   render() {
@@ -32,7 +22,7 @@ class MyDate extends React.Component {
 		}
 		return (
 			<div>
-				<Card body className="text-center" onClick={this.onClickDate} style={{ borderColor: this.state.color, height: 70, margin: 2 }}>
+				<Card body className="text-center" onClick={() => this.props.onClickDate(this.props.id)} style={{ borderColor: this.props.color, height: 70, margin: 2 }}>
 					<CardTitle style={{ color: this.state.isSun
 														 ? 'red'
 														 : (this.state.isSat
@@ -40,7 +30,7 @@ class MyDate extends React.Component {
 														 	: 'black')}}>
 						{this.props.day}
 					</CardTitle>
-						<CardText style={{ color: this.state.color }}>{this.state.text}</CardText>
+						<CardText style={{ color: this.props.color }}>{this.props.property}</CardText>
 				</Card>
 			</div>
 		);

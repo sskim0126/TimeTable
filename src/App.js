@@ -23,7 +23,8 @@ class App extends React.Component {
 			month: month,
 			year: year,
 			currentProperty: null,
-			propertyGroup: initialPropertyGroup
+			propertyGroup: initialPropertyGroup,
+			isMonthChanged: false
 		}
 		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
 		this.onClickDescendingButton = this.onClickDescendingButton.bind(this)
@@ -47,14 +48,16 @@ class App extends React.Component {
 	onClickDescendingButton() {
 		this.setState({
 			month: this.state.month === 1 ? 12 : this.state.month - 1,
-			year: this.state.month === 1 ? this.state.year - 1 : this.state.year
+			year: this.state.month === 1 ? this.state.year - 1 : this.state.year,
+			isMonthChanged: true
 		})
 	}
 	
 	onClickAscendingButton() {
 		this.setState({
 			month: this.state.month === 12 ? 1 : this.state.month + 1,
-			year: this.state.month === 12 ? this.state.year + 1 : this.state.year
+			year: this.state.month === 12 ? this.state.year + 1 : this.state.year,
+			isMonthChanged: true
 		})
 	}
 	
@@ -66,6 +69,12 @@ class App extends React.Component {
 		})
 		this.setState({
 			propertyGroup: newPropertyGroup
+		})
+	}
+	
+	setIsMonthChangedFalse() {
+		this.setState({
+			isMonthChanged: false
 		})
 	}
 	

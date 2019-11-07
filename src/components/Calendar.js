@@ -13,9 +13,12 @@ class Calendar extends React.Component {
 		this.state = {
 			calendar: null,
 			month: this.props.month,
-			year: this.props.year
+			year: this.props.year,
+			property: null,
+			color: null
 		}
 		this.makeCalendar = this.makeCalendar.bind(this)
+		this.onClickDate = this.onClickDate.bind(this)
 	}
 	
 	componentWillMount() {
@@ -38,14 +41,18 @@ class Calendar extends React.Component {
 		for (let i = 0; i < firstWeekday; i++) {
 			calendar[row].push({
 				day: null,
-				weekday: null
+				weekday: null,
+				property: null,
+				color: null
 			})
 			col++;
 		}
 		for (let i = 1; i <= lastDate.getDate(); i++) {
 			calendar[row].push({
 				day: i,
-				weekday: col
+				weekday: col,
+				property: null,
+				color: null
 			})
 			col++;
 			if (col === 7) {
@@ -57,7 +64,9 @@ class Calendar extends React.Component {
 		for (let i = 0; i < 7 - col; i++) {
 			calendar[row].push({
 				day: null,
-				weekday: null
+				weekday: null,
+				property: null,
+				color: null
 			})
 		}
 		this.setState({
@@ -65,6 +74,15 @@ class Calendar extends React.Component {
 			lastDate: lastDate,
 			firstWeekday: firstWeekday,
 			calendar: calendar,
+		})
+	}
+	
+	onClickDate(id) {
+		let tmpCalendar = this.state.calendar
+		tmpCalendar[id[0]][id[1]].property = this.props.property
+		tmpCalendar[id[0]][id[1]].color = this.props.color
+		this.setState({
+			calendar: tmpCalendar
 		})
 	}
 	
@@ -84,14 +102,18 @@ class Calendar extends React.Component {
 				</Card>
 				<Card>
 					{
-						this.state.calendar.map((week, id) => {
+						this.state.calendar.map((week, rid) => {
 							return (
-								<Row key={id} noGutters>
+								<Row key={rid} noGutters>
 									{
-										week.map((date, id) => {
+										week.map((date, cid) => {
 											return (
 												<Col>
-													<MyDate key={id} property={this.props.property} color={this.props.color} {...date} />
+													<MyDate 
+														key={cid}
+														id={[rid, cid]} 
+														{...date} 
+														onClickDate={this.onClickDate} />
 												</Col>
 											)
 										})

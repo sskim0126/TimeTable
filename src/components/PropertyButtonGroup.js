@@ -4,7 +4,6 @@ import '../css/PropertyButtonGroup.css';
 import {
 	Collapse,
 	Button,
-	Fade,
 	InputGroup,
 	Input,
 	Card,
