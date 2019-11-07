@@ -69,12 +69,11 @@ class PropertyButtonGroup extends React.Component {
   render() {
 		return (
 			<div>
-				<div className='container' noGutters>
+				<div className='container' style={{ marginLeft: "-2%" }} noGutters>
 					{
 						this.props.propertyGroup.map(({ property, color }, id) => (
 							<PropertyButton
 								key={id}
-								className='button'
 								property={property}
 								color={color}
 								onClick={(isActive) => this.props.onClickPropertyButton(isActive, id)}

@@ -2,7 +2,8 @@ import React from 'react';
 import {
 	Card,
 	CardTitle,
-	CardText
+	CardText,
+	Button
 } from 'reactstrap';
 import { DATE_COLOR } from '../utils/colors.js'
 

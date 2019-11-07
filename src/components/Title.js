@@ -16,7 +16,7 @@ class Title extends React.Component {
 	
   render() {
 		return (
-			<div style={{ flexDirection: 'row', display: 'flex', backgroundColor: TITLE_COLOR }}>
+			<div style={{ flexDirection: 'row', display: 'flex', backgroundColor: TITLE_COLOR, alignItems: "center", justifyContent: "center" }}>
 				<MonthChangeButton isDescending={true} onClickDescendingButton={this.props.onClickDescendingButton} />
 					<Navbar color="light" light className='container'>
 						<NavbarBrand href="/" style={{ color: "white" }}>{this.props.year}년 {this.props.month}월 근무표</NavbarBrand>

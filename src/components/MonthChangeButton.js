@@ -14,7 +14,7 @@ class MonthChangeButton extends React.Component {
 	
   render() {
 		return (
-			<div style={{ marginTop: '2%' }}>
+			<div>
 				{
 					this.state.isDescending
 						? <Button onClick={this.props.onClickDescendingButton} style={{ border: 0, backgroundColor: TITLE_COLOR, color: "white" }}>{'<'}</Button>
