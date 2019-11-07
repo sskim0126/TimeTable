@@ -4,13 +4,12 @@ import {
 	CardTitle,
 	CardText
 } from 'reactstrap';
+import { DATE_COLOR } from '../utils/colors.js'
 
 class MyDate extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isSat: this.props.weekday === 6,
-			isSun: this.props.weekday === 0,
 		};
 	}
 	
@@ -22,15 +21,21 @@ class MyDate extends React.Component {
 		}
 		return (
 			<div>
-				<Card body className="text-center" onClick={() => this.props.onClickDate(this.props.id)} style={{ borderColor: this.props.color, height: 70, margin: 2 }}>
-					<CardTitle style={{ color: this.state.isSun
-														 ? 'red'
-														 : (this.state.isSat
-														 	? 'blue'
-														 	: 'black')}}>
+				<Card body onClick={() => this.props.onClickDate(this.props.id)} style={{ height: 70, borderRadius: 0, border: 0, alignItems: "center" }}>
+					<CardTitle>
 						{this.props.day}
 					</CardTitle>
-						<CardText style={{ color: this.props.color }}>{this.props.property}</CardText>
+					{
+						(this.props.property)
+						? <CardText style={{ 
+									color: this.props.color, 
+									backgroundColor: 'white', 
+									padding: "4px"
+								}}>
+								{this.props.property}
+							</CardText>
+						: <div> </div>
+					}
 				</Card>
 			</div>
 		);

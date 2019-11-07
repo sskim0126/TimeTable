@@ -73,7 +73,7 @@ class PropertyButtonGroup extends React.Component {
 					{
 						this.props.propertyGroup.map(({ property, color }, id) => (
 							<PropertyButton
-								key={id}sd
+								key={id}
 								className='button'
 								property={property}
 								color={color}
@@ -82,7 +82,16 @@ class PropertyButtonGroup extends React.Component {
 							/>
 						))
 					}
-					<Button style={{ border: 0 }}onClick={this.toggle}>+</Button>
+					<Button style={{ 
+						border: 0,
+						margin: "2%",
+						width: "50px",
+						height: "50px",
+						padding: "10px 16px",
+						borderRadius: "25px"
+						}} onClick={this.toggle}>
+						+
+					</Button>
 				</div>
 					<Collapse isOpen={this.state.isCollapseOepn}>
 						<Card>

@@ -8,8 +8,6 @@ class PropertyButton extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			property: this.props.property,
-			color: this.props.color,
 			isActive: false
 		};
 		this.switchActivation = this.switchActivation.bind(this)
@@ -37,29 +35,34 @@ class PropertyButton extends React.Component {
 				<Button 
 					onClick={this.switchActivation} 
 					style={{
-						margin: '3%',
-						borderColor: this.state.color, 
+						margin: "2%",
+						width: "50px",
+						height: "50px",
+						padding: "10px 16px",
+						borderRadius: "25px",
 						color: 'white',
-						backgroundColor: this.state.color 
+						backgroundColor: this.props.color 
 					}}
 				>
-					{this.state.property}
+					{this.props.property}
 				</Button>
 			)
 		}
 		return (
 			<Button 
 				onClick={this.switchActivation} 
-				color={this.state.color}
+				color={this.props.color}
 				outline
-				style={{ 
-					margin: '3%',
-					borderColor: this.state.color, 
-					color: this.state.color,
+				style={{
+					margin: "2%",
+					width: "50px",
+					height: "50px",
+					borderRadius: "25px",
+					color: this.props.color,
 					backgroundColor: 'white' 
 				}}
 			>
-				{this.state.property}
+				{this.props.property}
 			</Button>
 		);
   }

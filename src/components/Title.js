@@ -5,6 +5,7 @@ import {
 	Navbar,
 	NavbarBrand,
 } from 'reactstrap';
+import { TITLE_COLOR } from '../utils/colors.js'
 
 class Title extends React.Component {
 	constructor(props) {
@@ -15,10 +16,10 @@ class Title extends React.Component {
 	
   render() {
 		return (
-			<div style={{ flexDirection: 'row', display: 'flex' }}>
+			<div style={{ flexDirection: 'row', display: 'flex', backgroundColor: TITLE_COLOR }}>
 				<MonthChangeButton isDescending={true} onClickDescendingButton={this.props.onClickDescendingButton} />
 					<Navbar color="light" light className='container'>
-						<NavbarBrand href="/">{this.props.year}년 {this.props.month}월 근무표</NavbarBrand>
+						<NavbarBrand href="/" style={{ color: "white" }}>{this.props.year}년 {this.props.month}월 근무표</NavbarBrand>
 					</Navbar>
 				<MonthChangeButton isDescending={false} onClickAscendingButton={this.props.onClickAscendingButton} />
 			</div>

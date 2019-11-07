@@ -5,11 +5,11 @@ import PropertyButtonGroup from './components/PropertyButtonGroup';
 import Calendar from './components/Calendar';
 
 const initialPropertyGroup = [
-	{ property: '주', color: 'blue'},
-	{ property: '야', color: 'orange'},
-	{ property: '비', color: 'skyblue'},
-	{ property: '짱', color: 'red'},
-	{ property: '휴', color: 'green'},
+	{ property: '주', color: '#79c9d3'},
+	{ property: '야', color: '#491544'},
+	{ property: '비', color: '#ff9dac'},
+	{ property: '짱', color: '#08415c'},
+	{ property: '휴', color: '#7de86c'},
 ];
 
 const date = new Date();

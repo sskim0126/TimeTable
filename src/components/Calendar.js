@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import MyDate from './MyDate.js';
 import '../css/Calendar.css'
+import { WEEKDAY_COLOR, DATE_COLOR } from '../utils/colors.js'
 
 class Calendar extends React.Component {
 	constructor(props){
@@ -61,14 +62,19 @@ class Calendar extends React.Component {
 				col = 0;
 			}
 		}
-		for (let i = 0; i < 7 - col; i++) {
-			calendar[row].push({
-				day: null,
-				weekday: null,
-				property: null,
-				color: null
-			})
+		if (col !== 0) {
+			for (let i = 0; i < 7 - col; i++) {
+				calendar[row].push({
+					day: null,
+					weekday: null,
+					property: null,
+					color: null
+				})
+			}
+		} else {
+			calendar.pop()
 		}
+		console.log(calendar)
 		this.setState({
 			firstDate: firstDate,
 			lastDate: lastDate,
@@ -89,39 +95,44 @@ class Calendar extends React.Component {
   render() {
 		return (
 			<div>
-				<Card className='text-center'>
-					<Row noGutters>
-						<Col style={{color: 'red'}}>SUN</Col>
-						<Col>MON</Col>
-						<Col>TUE</Col>
-						<Col>WED</Col>
-						<Col>THU</Col>
-						<Col>FRI</Col>
-						<Col style={{color: 'blue'}}>SAT</Col>
+				<Card className='text-center' style={{ border: 0 }}>
+					<Row noGutters style={{ 
+							backgroundColor: WEEKDAY_COLOR, 
+							color: "white",
+							height: 40,
+							alignItems: "center"
+						}}>
+						<Col>일</Col>
+						<Col>월</Col>
+						<Col>화</Col>
+						<Col>수</Col>
+						<Col>목</Col>
+						<Col>금</Col>
+						<Col>토</Col>
 					</Row>
-				</Card>
-				<Card>
-					{
-						this.state.calendar.map((week, rid) => {
-							return (
-								<Row key={rid} noGutters>
-									{
-										week.map((date, cid) => {
-											return (
-												<Col>
-													<MyDate 
-														key={cid}
-														id={[rid, cid]} 
-														{...date} 
-														onClickDate={this.onClickDate} />
-												</Col>
-											)
-										})
-									}
-								</Row>
-							)
-						})
-					}
+					<Card style={{ border: 0 }}>
+						{
+							this.state.calendar.map((week, rid) => {
+								return (
+									<Row key={rid} noGutters style={{ borderBottom: "1px solid", borderColor: DATE_COLOR }}>
+										{
+											week.map((date, cid) => {
+												return (
+													<Col>
+														<MyDate 
+															key={cid}
+															id={[rid, cid]} 
+															{...date} 
+															onClickDate={this.onClickDate} />
+													</Col>
+												)
+											})
+										}
+									</Row>
+								)
+							})
+						}
+					</Card>
 				</Card>
 			</div>
 		);

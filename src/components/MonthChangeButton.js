@@ -2,6 +2,7 @@ import React from 'react';
 import {
 	Button
 } from 'reactstrap';
+import { TITLE_COLOR } from '../utils/colors.js'
 
 class MonthChangeButton extends React.Component {
 	constructor(props) {
@@ -16,8 +17,8 @@ class MonthChangeButton extends React.Component {
 			<div style={{ marginTop: '2%' }}>
 				{
 					this.state.isDescending
-						? <Button onClick={this.props.onClickDescendingButton} style={{ border: 0 }}>{'<'}</Button>
-						: <Button onClick={this.props.onClickAscendingButton} style={{ border: 0 }}>{'>'}</Button>
+						? <Button onClick={this.props.onClickDescendingButton} style={{ border: 0, backgroundColor: TITLE_COLOR, color: "white" }}>{'<'}</Button>
+						: <Button onClick={this.props.onClickAscendingButton} style={{ border: 0, backgroundColor: TITLE_COLOR, color: "white" }}>{'>'}</Button>
 				}
 			</div>
 		);
