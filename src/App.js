@@ -3,6 +3,7 @@ import './App.css';
 import Title from './components/Title';
 import PropertyButtonGroup from './components/PropertyButtonGroup';
 import Calendar from './components/Calendar';
+import WeekdayOuting from './components/WeekdayOuting'
 
 const initialPropertyGroup = [
 	{ property: '주', color: '#79c9d3'},
@@ -24,12 +25,13 @@ class App extends React.Component {
 			year: year,
 			currentProperty: null,
 			propertyGroup: initialPropertyGroup,
-			isMonthChanged: false
+			weekdayOutingArray: []
 		}
 		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
 		this.onClickDescendingButton = this.onClickDescendingButton.bind(this)
 		this.onClickAscendingButton = this.onClickAscendingButton.bind(this)
 		this.addPropertyButton = this.addPropertyButton.bind(this)
+		this.finishAddWeekdayOuting = this.finishAddWeekdayOuting.bind(this)
 	}
 	
 	onClickPropertyButton(isActive, id) {
@@ -49,7 +51,6 @@ class App extends React.Component {
 		this.setState({
 			month: this.state.month === 1 ? 12 : this.state.month - 1,
 			year: this.state.month === 1 ? this.state.year - 1 : this.state.year,
-			isMonthChanged: true
 		})
 	}
 	
@@ -57,7 +58,6 @@ class App extends React.Component {
 		this.setState({
 			month: this.state.month === 12 ? 1 : this.state.month + 1,
 			year: this.state.month === 12 ? this.state.year + 1 : this.state.year,
-			isMonthChanged: true
 		})
 	}
 	
@@ -72,9 +72,9 @@ class App extends React.Component {
 		})
 	}
 	
-	setIsMonthChangedFalse() {
+	finishAddWeekdayOuting(weekdayOutingArray) {
 		this.setState({
-			isMonthChanged: false
+			weekdayOutingArray: weekdayOutingArray
 		})
 	}
 	
@@ -85,18 +85,18 @@ class App extends React.Component {
 					onClickDescendingButton={this.onClickDescendingButton}
 					onClickAscendingButton={this.onClickAscendingButton} />
 				<PropertyButtonGroup currentProperty={this.state.currentProperty} propertyGroup={this.state.propertyGroup} onClickPropertyButton={this.onClickPropertyButton} addPropertyButton={this.addPropertyButton}/>
-				{
-					this.state.currentProperty !== null 
-						? <Calendar
-								property={this.state.propertyGroup[this.state.currentProperty].property}
-								color={this.state.propertyGroup[this.state.currentProperty].color}
-								year={this.state.year} 
-								month={this.state.month} />
-						: <Calendar 
-								property={null} color={null}
-								year={this.state.year} 
-								month={this.state.month} />
-				}
+				<Calendar
+					property={(this.state.currentProperty !== null)
+										? this.state.propertyGroup[this.state.currentProperty].property
+										: null}
+					color={(this.state.currentProperty !== null)
+										? this.state.propertyGroup[this.state.currentProperty].color
+										: null}
+					year={this.state.year} 
+					month={this.state.month} 
+					isModalMode={false} 
+					weekdayOutingArray={this.state.weekdayOutingArray} />
+				<WeekdayOuting year={this.state.year} month={this.state.month} finishAddWeekdayOuting={this.finishAddWeekdayOuting}/>
 			</div>
 		);
 	}

@@ -6,7 +6,7 @@ import {
 } from 'reactstrap';
 import MyDate from './MyDate.js';
 import '../css/Calendar.css'
-import { WEEKDAY_COLOR, DATE_COLOR } from '../utils/colors.js'
+import { WEEKDAY_COLOR } from '../utils/colors.js'
 
 class Calendar extends React.Component {
 	constructor(props){
@@ -16,23 +16,24 @@ class Calendar extends React.Component {
 			month: this.props.month,
 			year: this.props.year,
 			property: null,
-			color: null
+			color: null,
 		}
 		this.makeCalendar = this.makeCalendar.bind(this)
 		this.onClickDate = this.onClickDate.bind(this)
+		this.addWeekdayOuting = this.addWeekdayOuting.bind(this)
 	}
 	
 	componentWillMount() {
-		this.makeCalendar(this.props.year, this.props.month)
+		this.makeCalendar(this.props.year, this.props.month, this.props.weekdayOutingArray)
 	}
 	
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.month !== this.props.month) {
-			this.makeCalendar(nextProps.year, nextProps.month);
+		if (nextProps.month !== this.props.month || nextProps.weekdayOutingArray !== this.props.weekdayOutingArray) {
+			this.makeCalendar(nextProps.year, nextProps.month, nextProps.weekdayOutingArray);
 		}
 	}
 	
-	makeCalendar(year, month) {
+	makeCalendar(year, month, weekdayOutingArray) {
 		let firstDate = new Date(year, month - 1, 1);
 		let lastDate = new Date(year, month, 0);
 		let firstWeekday = firstDate.getDay();
@@ -44,7 +45,8 @@ class Calendar extends React.Component {
 				day: null,
 				weekday: null,
 				property: null,
-				color: null
+				color: null,
+				isWeekdayOuting: false
 			})
 			col++;
 		}
@@ -53,7 +55,8 @@ class Calendar extends React.Component {
 				day: i,
 				weekday: col,
 				property: null,
-				color: null
+				color: null,
+				isWeekdayOuting: false
 			})
 			col++;
 			if (col === 7) {
@@ -68,19 +71,25 @@ class Calendar extends React.Component {
 					day: null,
 					weekday: null,
 					property: null,
-					color: null
+					color: null,
+					isWeekdayOuting: false
 				})
 			}
 		} else {
 			calendar.pop()
 		}
-		console.log(calendar)
 		this.setState({
 			firstDate: firstDate,
 			lastDate: lastDate,
 			firstWeekday: firstWeekday,
 			calendar: calendar,
 		})
+		for (let id in weekdayOutingArray) {
+			calendar[weekdayOutingArray[id][0]][weekdayOutingArray[id][1]].isWeekdayOuting = true
+			this.setState({
+				calendar: calendar,
+			})
+		}
 	}
 	
 	onClickDate(id) {
@@ -90,6 +99,17 @@ class Calendar extends React.Component {
 		this.setState({
 			calendar: tmpCalendar
 		})
+	}
+	
+	addWeekdayOuting(id) {
+		let tmpCalendar = this.state.calendar
+		tmpCalendar[id[0]][id[1]].isWeekdayOuting = true
+		
+		this.setState({
+			calendar: tmpCalendar,
+		})
+		
+		this.props.addWeekdayOuting(id)
 	}
 	
   render() {
@@ -114,7 +134,7 @@ class Calendar extends React.Component {
 						{
 							this.state.calendar.map((week, rid) => {
 								return (
-									<Row key={rid} noGutters style={{ borderBottom: "1px solid", borderColor: DATE_COLOR }}>
+									<Row key={rid} noGutters style={{ borderBottom: "1px solid", borderBottomColor: WEEKDAY_COLOR }}>
 										{
 											week.map((date, cid) => {
 												return (
@@ -123,7 +143,7 @@ class Calendar extends React.Component {
 															key={cid}
 															id={[rid, cid]} 
 															{...date} 
-															onClickDate={this.onClickDate} />
+															onClickDate={(this.props.isModalMode) ? this.addWeekdayOuting : this.onClickDate} />
 													</Col>
 												)
 											})

@@ -3,15 +3,13 @@ import {
 	Card,
 	CardTitle,
 	CardText,
-	Button
 } from 'reactstrap';
-import { DATE_COLOR } from '../utils/colors.js'
 
 class MyDate extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		};
+		}
 	}
 	
   render() {
@@ -22,8 +20,13 @@ class MyDate extends React.Component {
 		}
 		return (
 			<div>
-				<Card body onClick={() => this.props.onClickDate(this.props.id)} style={{ height: 70, borderRadius: 0, border: 0, alignItems: "center" }}>
-					<CardTitle>
+				<Card body onClick={() => this.props.onClickDate(this.props.id)} style={{ 
+						height: 70, 
+						borderRadius: 0,
+						border: 0, 
+						alignItems: "center",
+					}}>
+					<CardTitle className={(this.props.isWeekdayOuting) ? "font-weight-bold" : ""}>
 						{this.props.day}
 					</CardTitle>
 					{
@@ -31,7 +34,7 @@ class MyDate extends React.Component {
 						? <CardText style={{ 
 									color: this.props.color, 
 									backgroundColor: 'white', 
-									padding: "4px"
+									padding: "4px",
 								}}>
 								{this.props.property}
 							</CardText>
