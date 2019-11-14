@@ -84,7 +84,7 @@ class Calendar extends React.Component {
 			firstWeekday: firstWeekday,
 			calendar: calendar,
 		})
-		for (let id in weekdayOutingArray) {
+		for (var id in weekdayOutingArray) {
 			calendar[weekdayOutingArray[id][0]][weekdayOutingArray[id][1]].isWeekdayOuting = true
 			this.setState({
 				calendar: calendar,

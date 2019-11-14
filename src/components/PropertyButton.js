@@ -38,11 +38,13 @@ class PropertyButton extends React.Component {
 						margin: "2%",
 						width: "50px",
 						height: "50px",
-						padding: "10px 16px",
 						borderRadius: "25px",
 						color: 'white',
-						backgroundColor: this.props.color 
+						backgroundColor: this.props.color,
+						display: 'flex',
+						justifyContent: 'center'
 					}}
+					className="text-center"
 				>
 					{this.props.property}
 				</Button>
@@ -59,8 +61,11 @@ class PropertyButton extends React.Component {
 					height: "50px",
 					borderRadius: "25px",
 					color: this.props.color,
-					backgroundColor: 'white' 
+					backgroundColor: 'white',
+					display: 'flex',
+					justifyContent: 'center'
 				}}
+				className="text-center"
 			>
 				{this.props.property}
 			</Button>
