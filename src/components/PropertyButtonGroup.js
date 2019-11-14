@@ -19,11 +19,13 @@ class PropertyButtonGroup extends React.Component {
 			currentProperty: '',
 			currentColor: '',
 			isPropertyEmpty: false,
-			isColorEmpty: false
+			isColorEmpty: false,
+			isDeleteMode: false,
 		};
 		this.toggle = this.toggle.bind(this)
 		this.changeCurrentColor = this.changeCurrentColor.bind(this)
 		this.addPropertyButton = this.addPropertyButton.bind(this)
+		this.toggleDeleteMode = this.toggleDeleteMode.bind(this)
 	}
 	
 	toggle() {
@@ -66,6 +68,12 @@ class PropertyButtonGroup extends React.Component {
 		}
 	}
 	
+	toggleDeleteMode() {
+		this.setState({
+			isDeleteMode: !this.state.isDeleteMode
+		})
+	}
+	
   render() {
 		return (
 			<div>
@@ -74,10 +82,14 @@ class PropertyButtonGroup extends React.Component {
 						this.props.propertyGroup.map(({ property, color }, id) => (
 							<PropertyButton
 								key={id}
+								id={id}
 								property={property}
 								color={color}
 								onClick={(isActive) => this.props.onClickPropertyButton(isActive, id)}
 								isOtherPropertyActive={this.props.currentProperty !== null && this.props.currentProperty !== id}
+								toggleDeleteMode={this.toggleDeleteMode}
+								isDeleteMode={this.state.isDeleteMode}
+								deletePropertyButton={this.props.deletePropertyButton}
 							/>
 						))
 					}

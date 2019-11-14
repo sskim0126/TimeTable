@@ -31,6 +31,7 @@ class App extends React.Component {
 		this.onClickDescendingButton = this.onClickDescendingButton.bind(this)
 		this.onClickAscendingButton = this.onClickAscendingButton.bind(this)
 		this.addPropertyButton = this.addPropertyButton.bind(this)
+		this.deletePropertyButton = this.deletePropertyButton.bind(this)
 		this.finishAddWeekdayOuting = this.finishAddWeekdayOuting.bind(this)
 	}
 	
@@ -62,13 +63,23 @@ class App extends React.Component {
 	}
 	
 	addPropertyButton(property, color) {
-		let newPropertyGroup = this.state.propertyGroup
-		newPropertyGroup.push({
+		let tmpPropertyGroup = this.state.propertyGroup
+		tmpPropertyGroup.push({
 			property: property,
 			color: color
 		})
 		this.setState({
-			propertyGroup: newPropertyGroup
+			propertyGroup: tmpPropertyGroup
+		})
+	}
+	
+	deletePropertyButton(id) {
+		let tmpPropertyGroup = this.state.propertyGroup
+		if (id > -1) {
+			tmpPropertyGroup.splice(id, 1)
+		}
+		this.setState({
+			propertyGroup: tmpPropertyGroup
 		})
 	}
 	
@@ -78,13 +89,15 @@ class App extends React.Component {
 		})
 	}
 	
+
+	
 	render() {
 		return (
 			<div>
 				<Title month={this.state.month} year={this.state.year} 
 					onClickDescendingButton={this.onClickDescendingButton}
 					onClickAscendingButton={this.onClickAscendingButton} />
-				<PropertyButtonGroup currentProperty={this.state.currentProperty} propertyGroup={this.state.propertyGroup} onClickPropertyButton={this.onClickPropertyButton} addPropertyButton={this.addPropertyButton}/>
+				<PropertyButtonGroup currentProperty={this.state.currentProperty} propertyGroup={this.state.propertyGroup} onClickPropertyButton={this.onClickPropertyButton} addPropertyButton={this.addPropertyButton} deletePropertyButton={this.deletePropertyButton}/>
 				<Calendar
 					property={(this.state.currentProperty !== null)
 										? this.state.propertyGroup[this.state.currentProperty].property
