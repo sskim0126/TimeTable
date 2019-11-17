@@ -27,9 +27,12 @@ class Calendar extends React.Component {
 		this.makeCalendar(this.props.year, this.props.month, this.props.weekdayOutingArray)
 	}
 	
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.month !== this.props.month || nextProps.weekdayOutingArray !== this.props.weekdayOutingArray) {
-			this.makeCalendar(nextProps.year, nextProps.month, nextProps.weekdayOutingArray);
+	componentDidUpdate(prevProps) {
+		console.log(prevProps)
+		if (prevProps.month !== this.props.month || 
+				JSON.stringify(prevProps.weekdayOutingArray) !== JSON.stringify(this.props.weekdayOutingArray)) {
+			console.log('test')
+			this.makeCalendar(this.props.year, this.props.month, this.props.weekdayOutingArray);
 		}
 	}
 	
@@ -78,18 +81,16 @@ class Calendar extends React.Component {
 		} else {
 			calendar.pop()
 		}
+		for (var id in weekdayOutingArray) {
+			calendar[weekdayOutingArray[id][0]][weekdayOutingArray[id][1]].isWeekdayOuting = true
+		}
 		this.setState({
 			firstDate: firstDate,
 			lastDate: lastDate,
 			firstWeekday: firstWeekday,
 			calendar: calendar,
 		})
-		for (var id in weekdayOutingArray) {
-			calendar[weekdayOutingArray[id][0]][weekdayOutingArray[id][1]].isWeekdayOuting = true
-			this.setState({
-				calendar: calendar,
-			})
-		}
+
 	}
 	
 	onClickDate(id) {
@@ -103,7 +104,7 @@ class Calendar extends React.Component {
 	
 	addWeekdayOuting(id) {
 		let tmpCalendar = this.state.calendar
-		tmpCalendar[id[0]][id[1]].isWeekdayOuting = true
+		tmpCalendar[id[0]][id[1]].isWeekdayOuting = !tmpCalendar[id[0]][id[1]].isWeekdayOuting
 		
 		this.setState({
 			calendar: tmpCalendar,

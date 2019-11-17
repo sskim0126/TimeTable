@@ -109,7 +109,7 @@ class App extends React.Component {
 					month={this.state.month} 
 					isModalMode={false} 
 					weekdayOutingArray={this.state.weekdayOutingArray} />
-				<WeekdayOuting year={this.state.year} month={this.state.month} finishAddWeekdayOuting={this.finishAddWeekdayOuting}/>
+				<WeekdayOuting year={this.state.year} month={this.state.month} finishAddWeekdayOuting={this.finishAddWeekdayOuting} weekdayOutingArray={this.state.weekdayOutingArray} />
 			</div>
 		);
 	}

@@ -57,6 +57,7 @@ class PropertyButton extends React.Component {
 									borderRadius: "25px",
 									color: 'white',
 									backgroundColor: this.props.color,
+									borderColor: this.props.color,
 									display: 'flex',
 									justifyContent: 'center'
 								}}
@@ -74,6 +75,7 @@ class PropertyButton extends React.Component {
 									borderRadius: "25px",
 									color: this.props.color,
 									backgroundColor: 'white',
+									borderColor: this.props.color,
 									display: 'flex',
 									justifyContent: 'center'
 								}}

@@ -77,7 +77,7 @@ class PropertyButtonGroup extends React.Component {
   render() {
 		return (
 			<div>
-				<div className='container' style={{ marginLeft: "-2%" }} noGutters>
+				<div className='container' style={{ marginTop: "2%", marginBottom: "2%", marginLeft: "-1%" }} noGutters>
 					{
 						this.props.propertyGroup.map(({ property, color }, id) => (
 							<PropertyButton
