@@ -3,8 +3,10 @@ import '../css/PropertyButton.css';
 import {
 	Button,
 	Fade,
+	Media
 } from 'reactstrap';
 import ClickNHold from 'react-click-n-hold';
+import delete_button from '../utils/delete_button.png'
 
 class PropertyButton extends React.Component {
 	constructor(props) {
@@ -36,10 +38,6 @@ class PropertyButton extends React.Component {
 		if (enough) {
 			this.props.toggleDeleteMode()
 		}
-	}
-	
-	test() {
-		console.log('test')
 	}
 	
   render() {
@@ -89,25 +87,23 @@ class PropertyButton extends React.Component {
 					in={this.props.isDeleteMode}
 					style={{
 						position: "absolute",
-						right: "-17px",
-						top: "-17px",
+						right: "-16px",
+						top: "-12px",
 					}}
 				>
 					<Button 
-						style={{ 
-							color: 'red',
+						style={{
 							border: "none",
-							width: "10px",
-							heigth: "10px",
 							display: "flex",
 							justifyContent: "center",
 							backgroundColor: "rgba(0, 0, 0, 0)"
-						}} 
+						}}
+						size="sm"
 						onClick={() => {
 							if (this.props.isDeleteMode) {
 							 this.props.deletePropertyButton(this.props.id)
 							}}}>
-						x
+						<Media src={delete_button} style={{ width: "20px", height: "20px" }} />
 					</Button>
 				</Fade>
 			</div>
