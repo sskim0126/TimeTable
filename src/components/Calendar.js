@@ -21,6 +21,7 @@ class Calendar extends React.Component {
 		this.makeCalendar = this.makeCalendar.bind(this)
 		this.onClickDate = this.onClickDate.bind(this)
 		this.addWeekdayOuting = this.addWeekdayOuting.bind(this)
+		this.resetWeekdayOuting = this.resetWeekdayOuting.bind(this)
 	}
 	
 	componentWillMount() {
@@ -28,11 +29,11 @@ class Calendar extends React.Component {
 	}
 	
 	componentDidUpdate(prevProps) {
-		console.log(prevProps)
-		if (prevProps.month !== this.props.month || 
-				JSON.stringify(prevProps.weekdayOutingArray) !== JSON.stringify(this.props.weekdayOutingArray)) {
-			console.log('test')
+		if (prevProps.month !== this.props.month) {
 			this.makeCalendar(this.props.year, this.props.month, this.props.weekdayOutingArray);
+		}
+		if (prevProps.numOfChangeWeekdayOuting !== this.props.numOfChangeWeekdayOuting) {
+			this.resetWeekdayOuting(this.props.weekdayOutingArray)
 		}
 	}
 	
@@ -111,6 +112,23 @@ class Calendar extends React.Component {
 		})
 		
 		this.props.addWeekdayOuting(id)
+	}
+	
+	resetWeekdayOuting(weekdayOutingArray) {
+		let tmpCalendar = this.state.calendar
+		for (var week of tmpCalendar) {
+			for (var day of week) {
+				day.isWeekdayOuting = false
+			}
+		}
+		
+		for (var id in weekdayOutingArray) {
+			tmpCalendar[weekdayOutingArray[id][0]][weekdayOutingArray[id][1]].isWeekdayOuting = true
+		}
+		
+		this.setState({
+			calendar: tmpCalendar
+		})
 	}
 	
   render() {

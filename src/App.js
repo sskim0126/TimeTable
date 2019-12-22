@@ -25,7 +25,8 @@ class App extends React.Component {
 			year: year,
 			currentProperty: null,
 			propertyGroup: initialPropertyGroup,
-			weekdayOutingArray: []
+			weekdayOutingArray: [],
+			numOfChangeWeekdayOuting: 0
 		}
 		this.onClickPropertyButton = this.onClickPropertyButton.bind(this)
 		this.onClickDescendingButton = this.onClickDescendingButton.bind(this)
@@ -85,7 +86,8 @@ class App extends React.Component {
 	
 	finishAddWeekdayOuting(weekdayOutingArray) {
 		this.setState({
-			weekdayOutingArray: weekdayOutingArray
+			weekdayOutingArray: weekdayOutingArray,
+			numOfChangeWeekdayOuting: this.state.numOfChangeWeekdayOuting + 1
 		})
 	}
 	
@@ -108,7 +110,8 @@ class App extends React.Component {
 					year={this.state.year} 
 					month={this.state.month} 
 					isModalMode={false} 
-					weekdayOutingArray={this.state.weekdayOutingArray} />
+					weekdayOutingArray={this.state.weekdayOutingArray}
+					numOfChangeWeekdayOuting={this.state.numOfChangeWeekdayOuting} />
 				<WeekdayOuting year={this.state.year} month={this.state.month} finishAddWeekdayOuting={this.finishAddWeekdayOuting} weekdayOutingArray={this.state.weekdayOutingArray} />
 			</div>
 		);
