@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
+    "dom-to-image": "^2.6.0",
     "eslint": "^6.4.0",
+    "file-saver": "^2.0.2",
     "react": "^16.9.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-transition-group": "^15.6.2",

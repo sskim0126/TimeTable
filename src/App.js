@@ -1,9 +1,14 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 import './App.css';
 import Title from './components/Title';
 import PropertyButtonGroup from './components/PropertyButtonGroup';
 import Calendar from './components/Calendar';
 import WeekdayOuting from './components/WeekdayOuting'
+import SaveAsImageButton from './components/SaveAsImageButton'
+
+import { saveAs } from 'file-saver';
+import domtoimage from 'dom-to-image';
 
 const initialPropertyGroup = [
 	{ property: '주', color: '#79c9d3'},
@@ -34,6 +39,7 @@ class App extends React.Component {
 		this.addPropertyButton = this.addPropertyButton.bind(this)
 		this.deletePropertyButton = this.deletePropertyButton.bind(this)
 		this.finishAddWeekdayOuting = this.finishAddWeekdayOuting.bind(this)
+		this.saveAsImage = this.saveAsImage.bind(this)
 	}
 	
 	onClickPropertyButton(isActive, id) {
@@ -91,11 +97,20 @@ class App extends React.Component {
 		})
 	}
 	
-
+	saveAsImage() {
+		var node = document.getElementById("body");
+		domtoimage.toBlob(node)
+			.then(function (blob) {
+					window.saveAs(blob, 'timetable.png');
+			})
+			.catch(function (error) {
+        console.error(error);
+    	});
+	}
 	
 	render() {
 		return (
-			<div>
+			<div id="body">
 				<Title month={this.state.month} year={this.state.year} 
 					onClickDescendingButton={this.onClickDescendingButton}
 					onClickAscendingButton={this.onClickAscendingButton} />
@@ -113,6 +128,7 @@ class App extends React.Component {
 					weekdayOutingArray={this.state.weekdayOutingArray}
 					numOfChangeWeekdayOuting={this.state.numOfChangeWeekdayOuting} />
 				<WeekdayOuting year={this.state.year} month={this.state.month} finishAddWeekdayOuting={this.finishAddWeekdayOuting} weekdayOutingArray={this.state.weekdayOutingArray} />
+				<SaveAsImageButton saveAsImage={this.saveAsImage} />
 			</div>
 		);
 	}
