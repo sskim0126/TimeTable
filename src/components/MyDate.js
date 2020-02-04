@@ -24,7 +24,7 @@ class MyDate extends React.Component {
 		}
 		return (
 			<Card body onClick={() => this.props.onClickDate(this.props.id)} style={{ 
-					width: this.state.width,
+					...this.state.width,
 					height: 70, 
 					borderRadius: 0,
 					border: 0, 

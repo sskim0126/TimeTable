@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import './App.css';
 import Title from './components/Title';
 import PropertyButtonGroup from './components/PropertyButtonGroup';
