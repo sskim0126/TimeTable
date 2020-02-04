@@ -7,7 +7,6 @@ import Calendar from './components/Calendar';
 import WeekdayOuting from './components/WeekdayOuting'
 import SaveAsImageButton from './components/SaveAsImageButton'
 
-import { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
 
 const initialPropertyGroup = [
@@ -98,19 +97,23 @@ class App extends React.Component {
 	}
 	
 	saveAsImage() {
-		var node = document.getElementById("body");
-		domtoimage.toBlob(node)
-			.then(function (blob) {
-					window.saveAs(blob, 'timetable.png');
+		var node = document.getElementById("timetable");
+			
+		domtoimage.toJpeg(node)
+			.then(function (dataUrl) {
+					var link = document.createElement('a');
+					link.download = 'timetable.jpeg';
+					link.href = dataUrl;
+					link.click();
 			})
 			.catch(function (error) {
-        console.error(error);
-    	});
+				console.error(error);
+			});
 	}
 	
 	render() {
 		return (
-			<div id="body">
+			<div id="timetable" style={{ backgroundColor: "white" }}>
 				<Title month={this.state.month} year={this.state.year} 
 					onClickDescendingButton={this.onClickDescendingButton}
 					onClickAscendingButton={this.onClickAscendingButton} />

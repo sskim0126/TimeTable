@@ -161,7 +161,8 @@ class Calendar extends React.Component {
 														<MyDate 
 															key={cid}
 															id={[rid, cid]} 
-															{...date} 
+															{...date}
+															isModalMode={this.props.isModalMode}
 															onClickDate={(this.props.isModalMode) ? this.addWeekdayOuting : this.onClickDate} />
 													</Col>
 												)
